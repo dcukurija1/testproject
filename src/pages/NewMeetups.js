@@ -1,6 +1,10 @@
-import NewMeetupForm from '../components/meetups/NewMeetupForm'
+import NewMeetupForm from '../components/meetups/NewMeetupForm';
+import { useNavigate } from 'react-router-dom';
+
 
 function NewMeetupsPage() {
+
+    const navigate = useNavigate();
     function onAddMeetupHandler(meetupData) {
         fetch('https://react-testproject-e2b52-default-rtdb.firebaseio.com/meetups.json' ,
             {
@@ -10,7 +14,9 @@ function NewMeetupsPage() {
                     'Content-type': 'application/json'
                 }
             }
-        );
+        ).then(() => {
+            navigate("/", { replace: true }); 
+        });
     }
     return (
         <section>
